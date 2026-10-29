@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalau Nanti — wasiat digital, sepuluh menit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<style>
+:root{
+  --bg:#F4F6F2; --paper:#FFFFFF; --ink:#16231E; --muted:#5E6B66; --line:#D9E0DB;
+  --green:#1E5B4F; --green-ink:#F4F6F2; --marigold:#F2B33D; --marigold-ink:#2A1F05;
+  --soft:#E6EFEB; --danger:#B4473D;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  color-scheme:dark; --bg:#121A17; --paper:#1A2420; --ink:#EEF3F0; --muted:#A3B0AA; --line:#2C3934;
+  --green:#2E8C78; --green-ink:#0F1A16; --marigold:#F2B33D; --soft:#1F2D28;
+}}
+:root[data-theme="dark"]{ color-scheme:dark; --bg:#121A17; --paper:#1A2420; --ink:#EEF3F0; --muted:#A3B0AA; --line:#2C3934; --green:#2E8C78; --green-ink:#0F1A16; --soft:#1F2D28; }
+*{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit}
+a{color:var(--green)}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font-weight:800;letter-spacing:-0.02em;font-size:20px;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--green)}
+.ghost{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.ghost:hover{border-color:var(--ink)}
+
+/* hero */
+.hero{padding:48px 0 32px}
+.hero h1{font-size:clamp(40px,9vw,64px);line-height:1.02;letter-spacing:-0.035em;font-weight:800;margin:0 0 20px}
+.hero h1 .fill{display:block;color:var(--green);min-height:1.05em}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:34ch;margin:0 0 28px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--marigold);color:var(--marigold-ink);border:0;border-radius:14px;padding:16px 22px;font-weight:700;font-size:17px;cursor:pointer}
+.cta:hover{filter:brightness(1.04)}
+.cta.secondary{background:var(--soft);color:var(--ink)}
+.trust{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-top:22px}
+.three{display:grid;gap:14px;margin:36px 0 56px}
+.three div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.three b{display:block;margin-bottom:4px}
+.three span{color:var(--muted);font-size:15px}
+.fine{color:var(--muted);font-size:13px;line-height:1.5;padding:24px 0 48px;border-top:1px solid var(--line)}
+
+/* flow */
+.flow{display:none;padding-bottom:120px}
+.flow.on{display:block}
+.progress{height:4px;background:var(--line);border-radius:2px;margin:6px 0 28px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--green);width:0;transition:width .3s ease}
+.q{display:none}
+.q.on{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.q.on{animation:none}.hero h1 .fill{transition:none}}
+.q h2{font-size:clamp(26px,5.5vw,34px);line-height:1.15;letter-spacing:-0.025em;font-weight:700;margin:0 0 8px}
+.q p.help{color:var(--muted);margin:0 0 22px}
+label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+input[type=text],input[type=number],input[type=tel],textarea,select{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit}
+input:focus,textarea:focus,select:focus,button:focus-visible{outline:3px solid var(--marigold);outline-offset:1px}
+textarea{min-height:110px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--green);color:var(--green-ink);border-color:var(--green)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:10px 0}
+.card.flat{background:var(--soft);border:0}
+.asset{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.asset small{color:var(--muted);display:block}
+.del{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px}
+.del:hover{color:var(--danger)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px))}
+.nav .wrap{display:flex;gap:10px;justify-content:space-between}
+.nav .cta{flex:1;justify-content:center}
+.shares{display:grid;gap:8px}
+.share{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.share:last-child{border:0}
+.share b{font-variant-numeric:tabular-nums}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--green)}
+.big{font-size:34px;font-weight:800;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--green)}
+.note{font-size:14px;color:var(--muted)}
+.warn{color:var(--danger);font-size:14px}
+
+/* document */
+.doc{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px 26px;line-height:1.6}
+.doc h3{margin:0 0 4px;font-size:22px;letter-spacing:-0.02em}
+.doc .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+.doc h4{margin:20px 0 6px;font-size:15px;text-transform:none;color:var(--green)}
+.doc ul{margin:0;padding-left:18px}
+.doc .sig{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:28px;font-size:13px;color:var(--muted)}
+.doc .sig div{border-top:1px solid var(--line);padding-top:8px}
+.actions{display:grid;gap:10px;margin:18px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+@media print{
+  body{background:#fff;color:#000}
+  .top,.nav,.actions,.progress,.hero,.note,.toast{display:none!important}
+  .flow,.q{display:block!important}
+  .q:not(#q-summary){display:none!important}
+  .doc{border:0;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#" id="home">Kalau <span>Nanti</span></a>
+    <button class="ghost" id="resume" hidden>Lanjutkan draf</button>
+  </header>
+
+  <section class="hero" id="hero">
+    <h1>Kalau nanti<br>aku nggak ada,<span class="fill" id="fill">siapa yang jaga anak-anak?</span></h1>
+    <p class="lead">Rapikan hal-hal yang paling sering ditunda. Sepuluh menit di HP, tanpa notaris, tanpa bahasa hukum. Hasilnya: satu dokumen yang bisa ditemukan keluargamu.</p>
+    <button class="cta" id="start">Mulai — sekitar 10 menit</button>
+    <div class="trust"><span>Gratis untuk versi dasar</span><span>Sesuai faraid</span><span>Tidak dibagikan sampai waktunya</span></div>
+    <div class="three">
+      <div><b>Supaya ketemu</b><span>Daftar aset, utang, dan di mana semuanya disimpan — hal yang paling sering hilang bersama orangnya.</span></div>
+      <div><b>Supaya sepertigamu berarti</b><span>Hitung bagian ahli waris secara otomatis, lalu tentukan wasiat sampai sepertiga: untuk orang, wakaf, atau kebaikan yang kamu pilih.</span></div>
+      <div><b>Supaya tetap manusiawi</b><span>Wali untuk anak, permintaan saat pemakaman, dan pesan yang hanya dibuka nanti.</span></div>
+    </div>
+    <p class="fine">Prototipe. Kalau Nanti bukan kantor hukum dan tidak memberi nasihat hukum atau fatwa. Perhitungan faraid adalah perkiraan untuk membantu percakapan keluarga; keabsahan dokumen bergantung pada tanda tangan, dua saksi, dan hukum yang berlaku. Data di prototipe ini hanya tersimpan di perangkatmu.</p>
+  </section>
+
+  <section class="flow" id="flow">
+    <div class="progress"><i id="bar"></i></div>
+
+    <div class="q" data-step="0" id="q-who">
+      <h2>Mulai dari yang paling dekat.</h2>
+      <p class="help">Kami perlu tahu siapa saja yang akan mewarisi menurut faraid.</p>
+      <label for="nick">Panggilanmu</label>
+      <input type="text" id="nick" placeholder="misalnya Dika" autocomplete="off">
+      <label>Kamu</label>
+      <div class="chips" data-field="gender"><button class="chip" data-v="L">Laki-laki</button><button class="chip" data-v="P">Perempuan</button></div>
+      <label>Status</label>
+      <div class="chips" data-field="married"><button class="chip" data-v="1">Menikah</button><button class="chip" data-v="0">Belum / tidak menikah</button></div>
+      <div class="row">
+        <div><label for="sons">Anak laki-laki</label><input type="number" id="sons" min="0" max="12" value="0"></div>
+        <div><label for="daughters">Anak perempuan</label><input type="number" id="daughters" min="0" max="12" value="0"></div>
+      </div>
+      <label>Orang tua yang masih hidup</label>
+      <div class="chips"><button class="chip" data-toggle="father">Ayah</button><button class="chip" data-toggle="mother">Ibu</button></div>
+    </div>
+
+    <div class="q" data-step="1" id="q-assets">
+      <h2>Apa saja yang kamu punya, dan di mana?</h2>
+      <p class="help">Perkiraan kasar sudah cukup. Yang penting keluargamu tahu harus mencari ke mana.</p>
+      <div id="assetList"></div>
+      <div class="card">
+        <label for="aType">Jenis</label>
+        <select id="aType"><option>Rekening bank</option><option>E-wallet / investasi</option><option>Rumah / tanah</option><option>Kendaraan</option><option>Emas / perhiasan</option><option>Usaha</option><option>Asuransi jiwa</option><option>Lainnya</option></select>
+        <label for="aVal">Perkiraan nilai (Rp)</label>
+        <input type="number" id="aVal" min="0" step="100000" placeholder="25000000">
+        <label for="aWhere">Di mana / cara mengaksesnya</label>
+        <input type="text" id="aWhere" placeholder="Bank ABC, buku tabungan di laci meja; PIN tahu istri">
+        <div style="margin-top:12px"><button class="cta secondary" id="addAsset">Tambah ke daftar</button></div>
+      </div>
+      <label for="debt">Total utang (Rp)</label>
+      <input type="number" id="debt" min="0" step="100000" placeholder="0">
+      <p class="note">Utang dilunasi dulu, baru wasiat, baru pembagian waris.</p>
+      <div class="card flat"><span class="note">Harta bersih</span><div class="big" id="netShow">Rp 0</div></div>
+    </div>
+
+    <div class="q" data-step="2" id="q-faraid">
+      <h2>Begini kira-kira pembagiannya.</h2>
+      <p class="help">Perkiraan menurut faraid untuk keluarga yang kamu sebutkan — sebelum wasiat. Bukan fatwa; untuk kasus khusus tanyakan ulama atau Pengadilan Agama.</p>
+      <div class="card" id="faraidBox"></div>
+    </div>
+
+    <div class="q" data-step="3" id="q-wasiat">
+      <h2>Sepertiga yang bisa kamu tentukan sendiri.</h2>
+      <p class="help">Di luar faraid, kamu boleh mewasiatkan sampai sepertiga harta bersih — untuk orang yang bukan ahli waris, wakaf, atau kebaikan yang kamu pilih.</p>
+      <label for="pct">Berapa persen harta bersih?</label>
+      <input type="range" id="pct" min="0" max="33" value="10">
+      <div class="card flat"><span class="note" id="pctLabel">10% dari harta bersih</span><div class="big" id="wasiatShow">Rp 0</div></div>
+      <label>Untuk siapa atau apa?</label>
+      <div class="chips" data-field="wasiatTo"><button class="chip" data-v="wakaf">Wakaf (dikelola selamanya)</button><button class="chip" data-v="kampanye">Kampanye / lembaga kebaikan</button><button class="chip" data-v="orang">Orang tertentu</button></div>
+      <label for="wasiatNote">Keterangan</label>
+      <input type="text" id="wasiatNote" placeholder="misalnya: beasiswa anak yatim di kampung, atau nama orangnya">
+      <p class="warn" id="heirWarn" hidden>Wasiat kepada ahli waris memerlukan persetujuan ahli waris lain. Kami akan menandainya di dokumen.</p>
+    </div>
+
+    <div class="q" data-step="4" id="q-guardian">
+      <h2>Siapa yang kamu percaya untuk anak-anak?</h2>
+      <p class="help">Kalau belum punya anak, bagian ini boleh dilewati.</p>
+      <label for="g1">Wali utama</label>
+      <input type="text" id="g1" placeholder="nama dan hubungan, misalnya: Rani (kakak)">
+      <label for="g2">Cadangan</label>
+      <input type="text" id="g2" placeholder="kalau wali utama berhalangan">
+      <label for="gNote">Pesan untuk wali</label>
+      <textarea id="gNote" placeholder="hal yang ingin kamu pastikan tentang sekolah, agama, atau kebiasaan anak-anak"></textarea>
+    </div>
+
+    <div class="q" data-step="5" id="q-wishes">
+      <h2>Bagian yang paling pribadi.</h2>
+      <p class="help">Tidak ada yang wajib. Tulis seperlunya.</p>
+      <label for="funeral">Permintaan saat pemakaman</label>
+      <textarea id="funeral" placeholder="dimakamkan di mana, siapa yang mengimami, doa atau bacaan yang kamu ingin dibacakan, hal yang tidak kamu inginkan"></textarea>
+      <label for="digital">Akun dan hal digital</label>
+      <textarea id="digital" placeholder="HP, email, media sosial: ditutup, dijadikan kenangan, atau diserahkan ke siapa"></textarea>
+      <label for="letter">Pesan untuk keluarga</label>
+      <textarea id="letter" placeholder="hanya akan dibuka nanti"></textarea>
+    </div>
+
+    <div class="q" data-step="6" id="q-witness">
+      <h2>Dua saksi dan satu pemegang kunci.</h2>
+      <p class="help">Wasiat tertulis sah bila ditandatangani di depan dua saksi dewasa. Pemegang kunci adalah orang yang akan menerima akses dokumen ini nanti.</p>
+      <label for="w1">Saksi 1 (nama, nomor WhatsApp)</label>
+      <input type="text" id="w1" placeholder="Budi, 0800-0000-0001">
+      <label for="w2">Saksi 2</label>
+      <input type="text" id="w2" placeholder="Sari, 0800-0000-0002">
+      <label for="keeper">Pemegang kunci</label>
+      <input type="text" id="keeper" placeholder="biasanya pasangan atau saudara">
+      <p class="note">Di versi penuh: saksi memverifikasi lewat tautan, dan dokumen hanya dibuka setelah ada bukti kematian yang sah.</p>
+    </div>
+
+    <div class="q" data-step="7" id="q-summary">
+      <h2>Selesai. Begini bentuknya.</h2>
+      <p class="help">Cetak, tanda tangani di depan dua saksimu, simpan aslinya. Kamu bisa kembali dan mengubahnya kapan saja.</p>
+      <div class="doc" id="doc"></div>
+      <div class="actions">
+        <button class="cta" id="print">Unduh / cetak dokumen</button>
+        <button class="cta secondary" id="share">Kirim ringkasan ke saksi lewat WhatsApp</button>
+        <button class="ghost" id="reset">Mulai dari awal</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" id="nav" hidden>
+  <div class="wrap">
+    <button class="ghost" id="back">Kembali</button>
+    <button class="cta" id="next">Lanjut</button>
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY='kalaunanti-draft-v1';
+  var S={nick:'',gender:'',married:'',sons:0,daughters:0,father:false,mother:false,assets:[],debt:0,pct:10,wasiatTo:'',wasiatNote:'',g1:'',g2:'',gNote:'',funeral:'',digital:'',letter:'',w1:'',w2:'',keeper:'',step:0,started:false};
+  var $=function(id){return document.getElementById(id)};
+  var rp=function(n){try{return 'Rp '+Math.round(n).toLocaleString('id-ID')}catch(e){return 'Rp '+Math.round(n)}};
+
+  // storage (per-device convenience only)
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+  function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&typeof d==='object'){for(var k in d)if(k in S)S[k]=d[k];return true}}catch(e){}return false}
+
+  // hero fill rotation — one orchestrated moment
+  var fills=['siapa yang jaga anak-anak?','siapa yang tahu di mana tabunganku?','sepertiga hartaku buat siapa?','apa yang kutinggalkan selain barang?'];
+  var fi=0, fillEl=$('fill'), reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){setInterval(function(){fi=(fi+1)%fills.length;fillEl.style.opacity=0;setTimeout(function(){fillEl.textContent=fills[fi];fillEl.style.opacity=1},220)},3200);fillEl.style.transition='opacity .22s'}
+
+  // faraid (simplified: spouse, parents, children). Returns [{who, frac, label}]
+  function faraid(){
+    var out=[], hasKids=(S.sons+S.daughters)>0, spouse=S.married==='1';
+    if(spouse){ if(S.gender==='L') out.push({who:'Istri',frac:hasKids?1/8:1/4,txt:hasKids?'1/8':'1/4'}); else out.push({who:'Suami',frac:hasKids?1/4:1/2,txt:hasKids?'1/4':'1/2'}); }
+    if(S.mother) out.push({who:'Ibu',frac:hasKids?1/6:1/3,txt:hasKids?'1/6':'1/3'});
+    var fatherFixed=S.father&&hasKids; if(fatherFixed) out.push({who:'Ayah',frac:1/6,txt:'1/6'});
+    var fixed=out.reduce(function(a,b){return a+b.frac},0);
+    var kids=[];
+    if(hasKids){
+      if(S.sons>0){ var rem=Math.max(0,1-fixed), units=S.sons*2+S.daughters;
+        if(S.sons) kids.push({who:S.sons>1?S.sons+' anak laki-laki':'Anak laki-laki',frac:rem*2*S.sons/units,txt:'sisa (asabah), 2:1'});
+        if(S.daughters) kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:rem*S.daughters/units,txt:'sisa (asabah), 2:1'});
+      } else { var df=S.daughters===1?1/2:2/3; kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:df,txt:S.daughters===1?'1/2':'2/3'}); fixed+=df; }
+    }
+    out=out.concat(kids);
+    var total=out.reduce(function(a,b){return a+b.frac},0);
+    if(S.father&&!fatherFixed){ var r=Math.max(0,1-total); out.push({who:'Ayah',frac:r,txt:'sisa (asabah)'}); total+=r; }
+    else if(S.father&&hasKids&&S.sons===0){ var r2=Math.max(0,1-total); if(r2>0){ for(var i=0;i<out.length;i++) if(out[i].who==='Ayah'){out[i].frac+=r2;out[i].txt='1/6 + sisa'} total+=r2; } }
+    if(total>1.0001){ out.forEach(function(o){o.frac=o.frac/total}); out.awl=true; total=1 }
+    if(total<0.9999&&out.length){ var ns=out.filter(function(o){return o.who!=='Istri'&&o.who!=='Suami'}); var sum=ns.reduce(function(a,b){return a+b.frac},0); var left=1-total; if(sum>0){ns.forEach(function(o){o.frac+=left*o.frac/sum}); out.radd=true} else if(out.length){out[0].frac+=left} }
+    return out;
+  }
+  function net(){var a=S.assets.reduce(function(s,x){return s+(+x.val||0)},0);return Math.max(0,a-(+S.debt||0))}
+  function wasiatAmt(){return net()*S.pct/100}
+  function afterWasiat(){return net()-wasiatAmt()}
+
+  // render
+  var steps=document.querySelectorAll('.q'), N=steps.length;
+  function show(){
+    $('hero').style.display=S.started?'none':'';
+    $('flow').classList.toggle('on',S.started); $('nav').hidden=!S.started;
+    steps.forEach(function(q){q.classList.toggle('on',+q.dataset.step===S.step)});
+    $('bar').style.width=((S.step)/(N-1)*100)+'%';
+    $('back').style.visibility=S.step===0?'hidden':'visible';
+    $('next').textContent=S.step===N-1?'Simpan draf':(S.step===N-2?'Lihat dokumen':'Lanjut');
+    $('next').style.display=S.step===N-1?'none':'';
+    if(S.step===1) renderAssets(); if(S.step===2) renderFaraid(); if(S.step===3) renderWasiat(); if(S.step===7) renderDoc();
+    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); save();
+  }
+  function renderAssets(){
+    var h=S.assets.map(function(a,i){return '<div class="card asset"><div><b>'+esc(a.type)+'</b> · '+rp(a.val)+'<small>'+esc(a.where||'—')+'</small></div><button class="del" data-i="'+i+'" aria-label="hapus">✕</button></div>'}).join('');
+    $('assetList').innerHTML=h||'<p class="note">Belum ada. Mulai dari yang paling bernilai.</p>';
+    $('netShow').textContent=rp(net());
+  }
+  function renderFaraid(){
+    var f=faraid(), n=afterWasiat();
+    if(!f.length){$('faraidBox').innerHTML='<p>Belum ada ahli waris yang kami kenali dari jawabanmu. Dalam keadaan ini, saudara kandung atau kerabat lain bisa menjadi ahli waris — bagian itu belum dihitung di prototipe.</p>';return}
+    var h='<p class="note">Dari '+rp(net())+' harta bersih'+(S.pct>0?', setelah wasiat '+S.pct+'%':'')+'. Sisa '+rp(n)+' dibagi:</p><div class="shares">';
+    f.forEach(function(o){h+='<div class="share"><div><b>'+esc(o.who)+'</b><div class="bar"><i style="width:'+(o.frac*100).toFixed(1)+'%"></i></div></div><span class="note">'+o.txt+'</span><b>'+rp(n*o.frac)+'</b></div>'});
+    h+='</div>';
+    if(f.awl) h+='<p class="note">Bagian melebihi satu, jadi dikurangi proporsional (ʿaul).</p>';
+    if(f.radd) h+='<p class="note">Ada sisa yang dikembalikan proporsional kepada ahli waris selain pasangan (radd).</p>';
+    $('faraidBox').innerHTML=h;
+  }
+  function renderWasiat(){ $('pct').value=S.pct; $('pctLabel').textContent=S.pct+'% dari harta bersih'+(S.pct===33?' (batas maksimum)':''); $('wasiatShow').textContent=rp(wasiatAmt()); $('heirWarn').hidden=S.wasiatTo!=='orang' }
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function nl(s){return esc(s).replace(/\n/g,'<br>')}
+  function renderDoc(){
+    var f=faraid(), n=afterWasiat(), today=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+    var h='<h3>Wasiat dan catatan keluarga '+(S.nick?'— '+esc(S.nick):'')+'</h3><div class="sub">Disusun '+today+' · draf, belum ditandatangani</div>';
+    h+='<p>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Saya menulis ini dalam keadaan sadar dan tanpa paksaan, supaya keluarga saya tidak perlu menebak.</p>';
+    h+='<h4>Harta dan di mana menemukannya</h4>'+(S.assets.length?'<ul>'+S.assets.map(function(a){return '<li>'+esc(a.type)+' — sekitar '+rp(a.val)+(a.where?'. '+esc(a.where):'')+'</li>'}).join('')+'</ul>':'<p>Belum diisi.</p>')+'<p>Utang yang harus dilunasi lebih dulu: '+rp(S.debt||0)+'. Harta bersih sekitar '+rp(net())+'.</p>';
+    if(S.pct>0) h+='<h4>Wasiat (maksimal sepertiga)</h4><p>Saya mewasiatkan '+S.pct+'% dari harta bersih, sekitar '+rp(wasiatAmt())+', untuk '+({wakaf:'wakaf yang dikelola selamanya',kampanye:'lembaga atau kampanye kebaikan',orang:'orang berikut'}[S.wasiatTo]||'tujuan berikut')+(S.wasiatNote?': '+esc(S.wasiatNote):'.')+(S.wasiatTo==='orang'?' <i>Bila penerima adalah ahli waris, wasiat ini berlaku dengan persetujuan ahli waris lain.</i>':'')+'</p>';
+    if(f.length) h+='<h4>Pembagian sisa harta menurut faraid (perkiraan)</h4><ul>'+f.map(function(o){return '<li>'+esc(o.who)+': '+o.txt+' ≈ '+rp(n*o.frac)+'</li>'}).join('')+'</ul>';
+    if(S.g1||S.g2) h+='<h4>Wali untuk anak-anak</h4><p>'+(S.g1?'Wali utama: '+esc(S.g1)+'. ':'')+(S.g2?'Cadangan: '+esc(S.g2)+'. ':'')+(S.gNote?'<br>'+nl(S.gNote):'')+'</p>';
+    if(S.funeral) h+='<h4>Permintaan saat pemakaman</h4><p>'+nl(S.funeral)+'</p>';
+    if(S.digital) h+='<h4>Akun dan hal digital</h4><p>'+nl(S.digital)+'</p>';
+    if(S.letter) h+='<h4>Untuk keluarga</h4><p>'+nl(S.letter)+'</p>';
+    h+='<h4>Pemegang kunci</h4><p>'+(S.keeper?esc(S.keeper):'Belum ditentukan')+'</p>';
+    h+='<div class="sig"><div>Tanda tangan saya<br><br><br>'+esc(S.nick||'')+'</div><div>Saksi 1<br><br><br>'+esc(S.w1||'')+'</div><div>Saksi 2<br><br><br>'+esc(S.w2||'')+'</div></div>';
+    h+='<p class="sub" style="margin-top:18px">Perhitungan faraid adalah perkiraan, bukan fatwa. Dokumen ini berlaku sebagai wasiat tertulis setelah ditandatangani di hadapan dua saksi; untuk kepastian lebih, dapat juga dibuat di hadapan notaris.</p>';
+    $('doc').innerHTML=h;
+  }
+
+  // bind
+  function bindText(id,key,num){var el=$(id);if(!el)return;el.value=S[key]||(num?'':'');if(num&&S[key])el.value=S[key];el.addEventListener('input',function(){S[key]=num?+el.value||0:el.value;if(id==='debt')$('netShow').textContent=rp(net());save()})}
+  ['nick','wasiatNote','g1','g2','gNote','funeral','digital','letter','w1','w2','keeper'].forEach(function(k){bindText(k,k,false)});
+  bindText('sons','sons',true); bindText('daughters','daughters',true); bindText('debt','debt',true);
+  document.querySelectorAll('.chips[data-field]').forEach(function(g){var f=g.dataset.field;Array.prototype.forEach.call(g.children,function(b){b.setAttribute('aria-pressed',String(S[f])===b.dataset.v);b.addEventListener('click',function(){S[f]=b.dataset.v;Array.prototype.forEach.call(g.children,function(x){x.setAttribute('aria-pressed',x===b)});if(f==='wasiatTo')renderWasiat();save()})})});
+  document.querySelectorAll('[data-toggle]').forEach(function(b){var k=b.dataset.toggle;b.setAttribute('aria-pressed',!!S[k]);b.addEventListener('click',function(){S[k]=!S[k];b.setAttribute('aria-pressed',S[k]);save()})});
+  $('addAsset').addEventListener('click',function(){var v=+$('aVal').value||0;if(!v){toast('Isi perkiraan nilainya dulu');return}S.assets.push({type:$('aType').value,val:v,where:$('aWhere').value});$('aVal').value='';$('aWhere').value='';renderAssets();save()});
+  $('assetList').addEventListener('click',function(e){var b=e.target.closest('.del');if(!b)return;S.assets.splice(+b.dataset.i,1);renderAssets();save()});
+  $('pct').addEventListener('input',function(){S.pct=+$('pct').value;renderWasiat();save()});
+  $('start').addEventListener('click',function(){S.started=true;S.step=0;show()});
+  $('resume').addEventListener('click',function(){S.started=true;show()});
+  $('home').addEventListener('click',function(e){e.preventDefault();S.started=false;show()});
+  $('next').addEventListener('click',function(){ if(S.step===0&&(!S.gender||S.married==='')){toast('Pilih jenis kelamin dan status dulu');return} if(S.step===3&&(S.sons+S.daughters)===0){S.step=5}else S.step=Math.min(N-1,S.step+1);show()});
+  $('back').addEventListener('click',function(){ if(S.step===5&&(S.sons+S.daughters)===0){S.step=3}else S.step=Math.max(0,S.step-1);show()});
+  $('print').addEventListener('click',function(){window.print()});
+  $('share').addEventListener('click',function(){var t='Assalamualaikum. Aku baru menyusun wasiat dan catatan keluarga di Kalau Nanti, dan aku ingin kamu jadi saksi saat aku menandatanganinya. Boleh kita atur waktunya? — '+(S.nick||'');window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')});
+  $('reset').addEventListener('click',function(){if(!confirm('Hapus semua jawaban di perangkat ini?'))return;try{localStorage.removeItem(KEY)}catch(e){}location.reload()});
+  var tt; function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+
+  if(load()&&S.started){S.started=false;$('resume').hidden=false}
+  show();
+})();
+</script>
+</body>
+</html>
