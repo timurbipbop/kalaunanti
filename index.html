@@ -3,352 +3,530 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kalau Nanti — wasiat digital, sepuluh menit</title>
+<title>Kalau Nanti — wasiat & catatan keluarga, 5 menit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
 <style>
 :root{
-  --bg:#F4F6F2; --paper:#FFFFFF; --ink:#16231E; --muted:#5E6B66; --line:#D9E0DB;
-  --green:#1E5B4F; --green-ink:#F4F6F2; --marigold:#F2B33D; --marigold-ink:#2A1F05;
-  --soft:#E6EFEB; --danger:#B4473D;
+  --bg:#FAF7F1; --card:#FFFFFF; --ink:#15201B; --muted:#6B756F; --line:#E7E1D6;
+  --tint:#F2EEE3; --gold:#F0BD3D; --gold-ink:#231A05; --green:#1E5B4F; --green-soft:#E6EFEB;
+  --danger:#B4473D; --glow:#FCEFC6;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  color-scheme:dark; --bg:#121A17; --paper:#1A2420; --ink:#EEF3F0; --muted:#A3B0AA; --line:#2C3934;
-  --green:#2E8C78; --green-ink:#0F1A16; --marigold:#F2B33D; --soft:#1F2D28;
+  color-scheme:dark; --bg:#13170F; --card:#1C2119; --ink:#EFEEE6; --muted:#9BA39A; --line:#2B332B;
+  --tint:#232B22; --green:#2E8C78; --green-soft:#1C2C27; --glow:#2A2714;
 }}
-:root[data-theme="dark"]{ color-scheme:dark; --bg:#121A17; --paper:#1A2420; --ink:#EEF3F0; --muted:#A3B0AA; --line:#2C3934; --green:#2E8C78; --green-ink:#0F1A16; --soft:#1F2D28; }
 *{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 button{font:inherit}
-a{color:var(--green)}
-.wrap{max-width:640px;margin:0 auto;padding:0 20px}
-header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.brand{font-weight:800;letter-spacing:-0.02em;font-size:20px;text-decoration:none;color:var(--ink)}
+.page{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px 20px 64px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:-0.02em;text-decoration:none;color:var(--ink);margin-bottom:28px;cursor:pointer;background:none;border:0}
+.brand .dot{width:26px;height:26px;border-radius:50%;background:var(--green);display:inline-flex;align-items:center;justify-content:center;font-size:14px}
 .brand span{color:var(--green)}
-.ghost{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
-.ghost:hover{border-color:var(--ink)}
 
-/* hero */
-.hero{padding:48px 0 32px}
-.hero h1{font-size:clamp(40px,9vw,64px);line-height:1.02;letter-spacing:-0.035em;font-weight:800;margin:0 0 20px}
+.hero{max-width:460px;text-align:left}
+.hero h1{font-size:clamp(36px,8vw,52px);line-height:1.04;letter-spacing:-0.03em;font-weight:800;margin:0 0 18px}
 .hero h1 .fill{display:block;color:var(--green);min-height:1.05em}
-.hero p.lead{font-size:19px;color:var(--muted);max-width:34ch;margin:0 0 28px}
-.cta{display:inline-flex;align-items:center;gap:10px;background:var(--marigold);color:var(--marigold-ink);border:0;border-radius:14px;padding:16px 22px;font-weight:700;font-size:17px;cursor:pointer}
-.cta:hover{filter:brightness(1.04)}
-.cta.secondary{background:var(--soft);color:var(--ink)}
-.trust{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-top:22px}
-.three{display:grid;gap:14px;margin:36px 0 56px}
-.three div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
-.three b{display:block;margin-bottom:4px}
-.three span{color:var(--muted);font-size:15px}
-.fine{color:var(--muted);font-size:13px;line-height:1.5;padding:24px 0 48px;border-top:1px solid var(--line)}
+.hero p.lead{font-size:18px;color:var(--muted);line-height:1.5;margin:0 0 28px}
+.feature{margin-top:40px}
+.feature h3{font-size:22px;line-height:1.32;letter-spacing:-0.02em;font-weight:800;margin:0 0 14px}
+.checklist{display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:28px}
+.checkrow{display:flex;gap:12px;align-items:flex-start}
+.checkrow .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--gold-ink);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.checkrow b{display:block;font-size:16px}
+.checkrow span{color:var(--muted);font-size:14px}
+.hr{height:1px;background:var(--line)}
 
-/* flow */
-.flow{display:none;padding-bottom:120px}
-.flow.on{display:block}
-.progress{height:4px;background:var(--line);border-radius:2px;margin:6px 0 28px;overflow:hidden}
-.progress i{display:block;height:100%;background:var(--green);width:0;transition:width .3s ease}
-.q{display:none}
-.q.on{display:block;animation:in .25s ease}
+.card{width:100%;max-width:560px;background:var(--card);border-radius:28px;padding:40px 36px 36px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 20px 48px -24px rgba(0,0,0,.18)}
+.pbar-row{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.pbar{flex:1;display:flex;gap:6px}
+.pseg{flex:1;height:5px;border-radius:3px;background:var(--line);overflow:hidden}
+.pseg i{display:block;height:100%;background:var(--green);width:0%;transition:width .35s ease}
+.plabel{font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.back{background:none;border:0;color:var(--muted);font-size:15px;cursor:pointer;padding:0 0 18px;display:inline-flex;align-items:center;gap:4px}
+.back:hover{color:var(--ink)}
+.back[hidden]{visibility:hidden}
+
+.step{animation:in .22s ease}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.q.on{animation:none}.hero h1 .fill{transition:none}}
-.q h2{font-size:clamp(26px,5.5vw,34px);line-height:1.15;letter-spacing:-0.025em;font-weight:700;margin:0 0 8px}
-.q p.help{color:var(--muted);margin:0 0 22px}
-label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
-input[type=text],input[type=number],input[type=tel],textarea,select{width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit}
-input:focus,textarea:focus,select:focus,button:focus-visible{outline:3px solid var(--marigold);outline-offset:1px}
-textarea{min-height:110px;resize:vertical}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer;color:var(--ink)}
-.chip[aria-pressed=true]{background:var(--green);color:var(--green-ink);border-color:var(--green)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:10px 0}
-.card.flat{background:var(--soft);border:0}
-.asset{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
-.asset small{color:var(--muted);display:block}
-.del{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px}
-.del:hover{color:var(--danger)}
-.nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px))}
-.nav .wrap{display:flex;gap:10px;justify-content:space-between}
-.nav .cta{flex:1;justify-content:center}
-.shares{display:grid;gap:8px}
-.share{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-.share:last-child{border:0}
-.share b{font-variant-numeric:tabular-nums}
-.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;background:var(--green)}
-.big{font-size:34px;font-weight:800;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
-input[type=range]{width:100%;accent-color:var(--green)}
-.note{font-size:14px;color:var(--muted)}
-.warn{color:var(--danger);font-size:14px}
+@media (prefers-reduced-motion:reduce){.step{animation:none}}
+.step h2{font-size:clamp(26px,5vw,32px);line-height:1.18;letter-spacing:-0.025em;font-weight:800;margin:0 0 10px}
+.step p.help{color:var(--muted);font-size:16px;line-height:1.5;margin:0 0 26px}
 
-/* document */
-.doc{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px 26px;line-height:1.6}
-.doc h3{margin:0 0 4px;font-size:22px;letter-spacing:-0.02em}
-.doc .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
-.doc h4{margin:20px 0 6px;font-size:15px;text-transform:none;color:var(--green)}
+label.f{display:block;font-weight:600;font-size:14px;margin:16px 0 6px;color:var(--muted)}
+input[type=text],input[type=number],input[type=tel],textarea,select{width:100%;background:transparent;color:var(--ink);border:0;border-bottom:2px solid var(--line);padding:12px 2px;font:inherit;font-size:19px}
+input::placeholder,textarea::placeholder{color:#B9B2A4}
+input:focus,textarea:focus,select:focus{outline:0;border-bottom-color:var(--green)}
+textarea{min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:16px}
+textarea:focus{border-color:var(--green)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;border:2px solid var(--line);border-radius:16px;padding:18px 20px;cursor:pointer;background:var(--card);text-align:left;color:var(--ink)}
+.opt:hover{border-color:#D7CEBA}
+.opt.sel{border-color:var(--ink);background:var(--tint)}
+.opt b{font-weight:600;font-size:17px;display:block}
+.opt small{color:var(--muted);font-size:13px}
+.ring{flex:none;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:none;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.opt.sel .ring{display:flex}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:2px solid var(--line);border-radius:999px;padding:12px 18px;background:var(--card);color:var(--ink);cursor:pointer;font-size:15px}
+.chip.sel{background:var(--ink);border-color:var(--ink);color:var(--card)}
+
+.addrow{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;margin-top:6px}
+.asset{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.asset b{display:block;font-size:15px}
+.asset small{color:var(--muted);display:block;margin-top:2px}
+.del{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 4px}
+.del:hover{color:var(--danger)}
+
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--glow);color:#6B4E07;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.pill.green{background:var(--green-soft);color:var(--green)}
+.glow{position:relative;text-align:center;padding:8px 0 4px}
+.glow::before{content:"";position:absolute;inset:-40px -40px auto -40px;height:220px;background:radial-gradient(ellipse at center, var(--glow) 0%, transparent 70%);z-index:0;pointer-events:none}
+.glow>*{position:relative;z-index:1}
+.statnum{font-size:clamp(48px,12vw,80px);font-weight:800;letter-spacing:-0.04em;line-height:1;margin:6px 0}
+.stattag{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+.shares{display:flex;flex-direction:column;gap:10px;margin:8px 0 4px}
+.share{display:flex;align-items:center;gap:14px}
+.share .who{width:120px;flex:none;font-weight:600;font-size:14px}
+.share .bar{flex:1;height:9px;background:var(--line);border-radius:5px;overflow:hidden}
+.share .bar i{display:block;height:100%;background:var(--green)}
+.share .amt{width:120px;flex:none;text-align:right;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+
+.bigamt{font-size:34px;font-weight:800;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;margin:6px 0 16px}
+input[type=range]{width:100%;accent-color:var(--green);margin:18px 0 6px}
+
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--gold);color:var(--gold-ink);border:0;border-radius:14px;padding:17px 22px;font-weight:700;font-size:17px;cursor:pointer;margin-top:28px}
+.cta:disabled{opacity:.45;cursor:not-allowed}
+.cta:not(:disabled):hover{filter:brightness(1.04)}
+.cta.ghost{background:var(--tint);color:var(--ink)}
+.cta.outline{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+
+.trust{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px;margin-top:22px;justify-content:center}
+
+.checksum{background:var(--tint);border-radius:18px;padding:22px 24px;margin:18px 0 4px}
+.checksum h4{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 10px}
+.checksum h4:first-child{margin-top:0}
+.sumrow{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+.checksum .checksum h4 ~ .sumrow:last-child, .sumrow:last-child{border-bottom:0}
+.sumrow .ck{flex:none;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.sumrow b{display:block;font-size:15px}
+.sumrow span{color:var(--muted);font-size:13px}
+.note-box{background:var(--glow);border-radius:14px;padding:16px 18px;font-size:14px;line-height:1.5;color:#5A4506;margin:18px 0 0}
+
+.doc{line-height:1.6}
+.doc h3{margin:0 0 4px;font-size:21px;letter-spacing:-0.02em}
+.doc .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+.doc h4{margin:20px 0 6px;font-size:14px;color:var(--green)}
+.doc p, .doc ul{font-size:15px}
 .doc ul{margin:0;padding-left:18px}
-.doc .sig{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:28px;font-size:13px;color:var(--muted)}
+.doc .sig{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:26px;font-size:12px;color:var(--muted)}
 .doc .sig div{border-top:1px solid var(--line);padding-top:8px}
-.actions{display:grid;gap:10px;margin:18px 0}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
 .toast.on{opacity:1}
 @media print{
   body{background:#fff;color:#000}
-  .top,.nav,.actions,.progress,.hero,.note,.toast{display:none!important}
-  .flow,.q{display:block!important}
-  .q:not(#q-summary){display:none!important}
-  .doc{border:0;padding:0}
+  .brand,.trust,.pbar-row,.back,.cta,.actions{display:none!important}
+  .card{box-shadow:none;border:0;padding:0;max-width:none}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="#" id="home">Kalau <span>Nanti</span></a>
-    <button class="ghost" id="resume" hidden>Lanjutkan draf</button>
-  </header>
+<div class="page">
+  <button class="brand" id="home"><span class="dot">🌙</span>Kalau <span>Nanti</span></button>
 
-  <section class="hero" id="hero">
+  <section id="hero" class="hero">
     <h1>Kalau nanti<br>aku nggak ada,<span class="fill" id="fill">siapa yang jaga anak-anak?</span></h1>
-    <p class="lead">Rapikan hal-hal yang paling sering ditunda. Sepuluh menit di HP, tanpa notaris, tanpa bahasa hukum. Hasilnya: satu dokumen yang bisa ditemukan keluargamu.</p>
-    <button class="cta" id="start">Mulai — sekitar 10 menit</button>
-    <div class="trust"><span>Gratis untuk versi dasar</span><span>Sesuai faraid</span><span>Tidak dibagikan sampai waktunya</span></div>
-    <div class="three">
-      <div><b>Supaya ketemu</b><span>Daftar aset, utang, dan di mana semuanya disimpan — hal yang paling sering hilang bersama orangnya.</span></div>
-      <div><b>Supaya sepertigamu berarti</b><span>Hitung bagian ahli waris secara otomatis, lalu tentukan wasiat sampai sepertiga: untuk orang, wakaf, atau kebaikan yang kamu pilih.</span></div>
-      <div><b>Supaya tetap manusiawi</b><span>Wali untuk anak, permintaan saat pemakaman, dan pesan yang hanya dibuka nanti.</span></div>
+    <p class="lead">Cek di sini seberapa kamu butuh mempersiapkan jawaban “Kalau nanti aku nggak ada” — isi form 5 menit, gratis.</p>
+    <button class="cta startbtn">Mulai wasiatku</button>
+
+    <div class="feature">
+      <h3>Kalau nanti aku nggak ada…<br>siapa yang jaga</h3>
+      <div class="checklist">
+        <div class="checkrow"><span class="ck">✓</span><div><b>Tetapkan ahli waris, hitung bagian dibantu sistem</b></div></div>
+        <div class="hr"></div>
+        <div class="checkrow"><span class="ck">✓</span><div><b>Tetapkan wali untuk anak</b></div></div>
+        <div class="hr"></div>
+        <div class="checkrow"><span class="ck">✓</span><div><b>Tetapkan siapa yang menjaga hewan</b></div></div>
+      </div>
     </div>
-    <p class="fine">Prototipe. Kalau Nanti bukan kantor hukum dan tidak memberi nasihat hukum atau fatwa. Perhitungan faraid adalah perkiraan untuk membantu percakapan keluarga; keabsahan dokumen bergantung pada tanda tangan, dua saksi, dan hukum yang berlaku. Data di prototipe ini hanya tersimpan di perangkatmu.</p>
+
+    <div class="feature">
+      <h3>Kalau nanti aku nggak ada…<br>untuk siapa uang dan barangku</h3>
+      <div class="checklist">
+        <div class="checkrow"><span class="ck">✓</span><div><b>Daftar aset dan utang, disimpan rapi dan aman</b></div></div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <h3>Kalau nanti aku nggak ada…<br>apa yang kutinggalkan selain barang</h3>
+      <div class="checklist">
+        <div class="checkrow"><span class="ck">✓</span><div><b>Pesan personal yang hanya dibuka nanti</b></div></div>
+        <div class="hr"></div>
+        <div class="checkrow"><span class="ck">✓</span><div><b>Permintaan saat pemakaman</b></div></div>
+      </div>
+    </div>
+
+    <button class="cta startbtn">Mulai wasiatku</button>
   </section>
 
-  <section class="flow" id="flow">
-    <div class="progress"><i id="bar"></i></div>
-
-    <div class="q" data-step="0" id="q-who">
-      <h2>Mulai dari yang paling dekat.</h2>
-      <p class="help">Kami perlu tahu siapa saja yang akan mewarisi menurut faraid.</p>
-      <label for="nick">Panggilanmu</label>
-      <input type="text" id="nick" placeholder="misalnya Dika" autocomplete="off">
-      <label>Kamu</label>
-      <div class="chips" data-field="gender"><button class="chip" data-v="L">Laki-laki</button><button class="chip" data-v="P">Perempuan</button></div>
-      <label>Status</label>
-      <div class="chips" data-field="married"><button class="chip" data-v="1">Menikah</button><button class="chip" data-v="0">Belum / tidak menikah</button></div>
-      <div class="row">
-        <div><label for="sons">Anak laki-laki</label><input type="number" id="sons" min="0" max="12" value="0"></div>
-        <div><label for="daughters">Anak perempuan</label><input type="number" id="daughters" min="0" max="12" value="0"></div>
-      </div>
-      <label>Orang tua yang masih hidup</label>
-      <div class="chips"><button class="chip" data-toggle="father">Ayah</button><button class="chip" data-toggle="mother">Ibu</button></div>
+  <section id="flow" class="card" style="display:none">
+    <button class="back" id="back">‹ Kembali</button>
+    <div class="pbar-row">
+      <div class="pbar"><div class="pseg"><i id="s0"></i></div><div class="pseg"><i id="s1"></i></div><div class="pseg"><i id="s2"></i></div></div>
+      <div class="plabel" id="plabel">RENCANAMU</div>
     </div>
-
-    <div class="q" data-step="1" id="q-assets">
-      <h2>Apa saja yang kamu punya, dan di mana?</h2>
-      <p class="help">Perkiraan kasar sudah cukup. Yang penting keluargamu tahu harus mencari ke mana.</p>
-      <div id="assetList"></div>
-      <div class="card">
-        <label for="aType">Jenis</label>
-        <select id="aType"><option>Rekening bank</option><option>E-wallet / investasi</option><option>Rumah / tanah</option><option>Kendaraan</option><option>Emas / perhiasan</option><option>Usaha</option><option>Asuransi jiwa</option><option>Lainnya</option></select>
-        <label for="aVal">Perkiraan nilai (Rp)</label>
-        <input type="number" id="aVal" min="0" step="100000" placeholder="25000000">
-        <label for="aWhere">Di mana / cara mengaksesnya</label>
-        <input type="text" id="aWhere" placeholder="Bank ABC, buku tabungan di laci meja; PIN tahu istri">
-        <div style="margin-top:12px"><button class="cta secondary" id="addAsset">Tambah ke daftar</button></div>
-      </div>
-      <label for="debt">Total utang (Rp)</label>
-      <input type="number" id="debt" min="0" step="100000" placeholder="0">
-      <p class="note">Utang dilunasi dulu, baru wasiat, baru pembagian waris.</p>
-      <div class="card flat"><span class="note">Harta bersih</span><div class="big" id="netShow">Rp 0</div></div>
-    </div>
-
-    <div class="q" data-step="2" id="q-faraid">
-      <h2>Begini kira-kira pembagiannya.</h2>
-      <p class="help">Perkiraan menurut faraid untuk keluarga yang kamu sebutkan — sebelum wasiat. Bukan fatwa; untuk kasus khusus tanyakan ulama atau Pengadilan Agama.</p>
-      <div class="card" id="faraidBox"></div>
-    </div>
-
-    <div class="q" data-step="3" id="q-wasiat">
-      <h2>Sepertiga yang bisa kamu tentukan sendiri.</h2>
-      <p class="help">Di luar faraid, kamu boleh mewasiatkan sampai sepertiga harta bersih — untuk orang yang bukan ahli waris, wakaf, atau kebaikan yang kamu pilih.</p>
-      <label for="pct">Berapa persen harta bersih?</label>
-      <input type="range" id="pct" min="0" max="33" value="10">
-      <div class="card flat"><span class="note" id="pctLabel">10% dari harta bersih</span><div class="big" id="wasiatShow">Rp 0</div></div>
-      <label>Untuk siapa atau apa?</label>
-      <div class="chips" data-field="wasiatTo"><button class="chip" data-v="wakaf">Wakaf (dikelola selamanya)</button><button class="chip" data-v="kampanye">Kampanye / lembaga kebaikan</button><button class="chip" data-v="orang">Orang tertentu</button></div>
-      <label for="wasiatNote">Keterangan</label>
-      <input type="text" id="wasiatNote" placeholder="misalnya: beasiswa anak yatim di kampung, atau nama orangnya">
-      <p class="warn" id="heirWarn" hidden>Wasiat kepada ahli waris memerlukan persetujuan ahli waris lain. Kami akan menandainya di dokumen.</p>
-    </div>
-
-    <div class="q" data-step="4" id="q-guardian">
-      <h2>Siapa yang kamu percaya untuk anak-anak?</h2>
-      <p class="help">Kalau belum punya anak, bagian ini boleh dilewati.</p>
-      <label for="g1">Wali utama</label>
-      <input type="text" id="g1" placeholder="nama dan hubungan, misalnya: Rani (kakak)">
-      <label for="g2">Cadangan</label>
-      <input type="text" id="g2" placeholder="kalau wali utama berhalangan">
-      <label for="gNote">Pesan untuk wali</label>
-      <textarea id="gNote" placeholder="hal yang ingin kamu pastikan tentang sekolah, agama, atau kebiasaan anak-anak"></textarea>
-    </div>
-
-    <div class="q" data-step="5" id="q-wishes">
-      <h2>Bagian yang paling pribadi.</h2>
-      <p class="help">Tidak ada yang wajib. Tulis seperlunya.</p>
-      <label for="funeral">Permintaan saat pemakaman</label>
-      <textarea id="funeral" placeholder="dimakamkan di mana, siapa yang mengimami, doa atau bacaan yang kamu ingin dibacakan, hal yang tidak kamu inginkan"></textarea>
-      <label for="digital">Akun dan hal digital</label>
-      <textarea id="digital" placeholder="HP, email, media sosial: ditutup, dijadikan kenangan, atau diserahkan ke siapa"></textarea>
-      <label for="letter">Pesan untuk keluarga</label>
-      <textarea id="letter" placeholder="hanya akan dibuka nanti"></textarea>
-    </div>
-
-    <div class="q" data-step="6" id="q-witness">
-      <h2>Dua saksi dan satu pemegang kunci.</h2>
-      <p class="help">Wasiat tertulis sah bila ditandatangani di depan dua saksi dewasa. Pemegang kunci adalah orang yang akan menerima akses dokumen ini nanti.</p>
-      <label for="w1">Saksi 1 (nama, nomor WhatsApp)</label>
-      <input type="text" id="w1" placeholder="Budi, 0800-0000-0001">
-      <label for="w2">Saksi 2</label>
-      <input type="text" id="w2" placeholder="Sari, 0800-0000-0002">
-      <label for="keeper">Pemegang kunci</label>
-      <input type="text" id="keeper" placeholder="biasanya pasangan atau saudara">
-      <p class="note">Di versi penuh: saksi memverifikasi lewat tautan, dan dokumen hanya dibuka setelah ada bukti kematian yang sah.</p>
-    </div>
-
-    <div class="q" data-step="7" id="q-summary">
-      <h2>Selesai. Begini bentuknya.</h2>
-      <p class="help">Cetak, tanda tangani di depan dua saksimu, simpan aslinya. Kamu bisa kembali dan mengubahnya kapan saja.</p>
-      <div class="doc" id="doc"></div>
-      <div class="actions">
-        <button class="cta" id="print">Unduh / cetak dokumen</button>
-        <button class="cta secondary" id="share">Kirim ringkasan ke saksi lewat WhatsApp</button>
-        <button class="ghost" id="reset">Mulai dari awal</button>
-      </div>
-    </div>
+    <div class="step" id="stepBody"></div>
   </section>
+
+  <div class="trust"><span>Gratis untuk versi dasar</span><span>Sesuai faraid</span><span>Datamu tersimpan di perangkat ini</span></div>
 </div>
-
-<nav class="nav" id="nav" hidden>
-  <div class="wrap">
-    <button class="ghost" id="back">Kembali</button>
-    <button class="cta" id="next">Lanjut</button>
-  </div>
-</nav>
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
-  'use strict';
-  var KEY='kalaunanti-draft-v1';
-  var S={nick:'',gender:'',married:'',sons:0,daughters:0,father:false,mother:false,assets:[],debt:0,pct:10,wasiatTo:'',wasiatNote:'',g1:'',g2:'',gNote:'',funeral:'',digital:'',letter:'',w1:'',w2:'',keeper:'',step:0,started:false};
-  var $=function(id){return document.getElementById(id)};
-  var rp=function(n){try{return 'Rp '+Math.round(n).toLocaleString('id-ID')}catch(e){return 'Rp '+Math.round(n)}};
+'use strict';
+var KEY='kalaunanti-v2';
+var S={nick:'',gender:'',married:'',hasKids:null,sons:0,daughters:0,father:false,mother:false,
+  assets:[],debt:0,pct:10,wasiatTo:'',wasiatNote:'',g1:'',g2:'',gNote:'',
+  funeral:'',digital:'',letter:'',w1:'',w2:'',keeper:'',started:false,stepId:'name'};
+var $=function(id){return document.getElementById(id)};
+var rp=function(n){try{return 'Rp '+Math.round(n||0).toLocaleString('id-ID')}catch(e){return 'Rp '+Math.round(n||0)}};
+var esc=function(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var nl=function(s){return esc(s).replace(/\n/g,'<br>')};
 
-  // storage (per-device convenience only)
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-  function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&typeof d==='object'){for(var k in d)if(k in S)S[k]=d[k];return true}}catch(e){}return false}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&typeof d==='object'){for(var k in d)if(k in S)S[k]=d[k];return true}}catch(e){}return false}
 
-  // hero fill rotation — one orchestrated moment
-  var fills=['siapa yang jaga anak-anak?','siapa yang tahu di mana tabunganku?','sepertiga hartaku buat siapa?','apa yang kutinggalkan selain barang?'];
-  var fi=0, fillEl=$('fill'), reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduce){setInterval(function(){fi=(fi+1)%fills.length;fillEl.style.opacity=0;setTimeout(function(){fillEl.textContent=fills[fi];fillEl.style.opacity=1},220)},3200);fillEl.style.transition='opacity .22s'}
+function net(){var a=S.assets.reduce(function(s,x){return s+(+x.val||0)},0);return Math.max(0,a-(+S.debt||0))}
+function wasiatAmt(){return net()*S.pct/100}
+function afterWasiat(){return net()-wasiatAmt()}
 
-  // faraid (simplified: spouse, parents, children). Returns [{who, frac, label}]
-  function faraid(){
-    var out=[], hasKids=(S.sons+S.daughters)>0, spouse=S.married==='1';
-    if(spouse){ if(S.gender==='L') out.push({who:'Istri',frac:hasKids?1/8:1/4,txt:hasKids?'1/8':'1/4'}); else out.push({who:'Suami',frac:hasKids?1/4:1/2,txt:hasKids?'1/4':'1/2'}); }
-    if(S.mother) out.push({who:'Ibu',frac:hasKids?1/6:1/3,txt:hasKids?'1/6':'1/3'});
-    var fatherFixed=S.father&&hasKids; if(fatherFixed) out.push({who:'Ayah',frac:1/6,txt:'1/6'});
-    var fixed=out.reduce(function(a,b){return a+b.frac},0);
-    var kids=[];
-    if(hasKids){
-      if(S.sons>0){ var rem=Math.max(0,1-fixed), units=S.sons*2+S.daughters;
-        if(S.sons) kids.push({who:S.sons>1?S.sons+' anak laki-laki':'Anak laki-laki',frac:rem*2*S.sons/units,txt:'sisa (asabah), 2:1'});
-        if(S.daughters) kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:rem*S.daughters/units,txt:'sisa (asabah), 2:1'});
-      } else { var df=S.daughters===1?1/2:2/3; kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:df,txt:S.daughters===1?'1/2':'2/3'}); fixed+=df; }
-    }
-    out=out.concat(kids);
-    var total=out.reduce(function(a,b){return a+b.frac},0);
-    if(S.father&&!fatherFixed){ var r=Math.max(0,1-total); out.push({who:'Ayah',frac:r,txt:'sisa (asabah)'}); total+=r; }
-    else if(S.father&&hasKids&&S.sons===0){ var r2=Math.max(0,1-total); if(r2>0){ for(var i=0;i<out.length;i++) if(out[i].who==='Ayah'){out[i].frac+=r2;out[i].txt='1/6 + sisa'} total+=r2; } }
-    if(total>1.0001){ out.forEach(function(o){o.frac=o.frac/total}); out.awl=true; total=1 }
-    if(total<0.9999&&out.length){ var ns=out.filter(function(o){return o.who!=='Istri'&&o.who!=='Suami'}); var sum=ns.reduce(function(a,b){return a+b.frac},0); var left=1-total; if(sum>0){ns.forEach(function(o){o.frac+=left*o.frac/sum}); out.radd=true} else if(out.length){out[0].frac+=left} }
-    return out;
+function faraid(){
+  var out=[], hasKids=(S.sons+S.daughters)>0, spouse=S.married==='1';
+  if(spouse){ if(S.gender==='L') out.push({who:'Istri',frac:hasKids?1/8:1/4,txt:hasKids?'1/8':'1/4'}); else out.push({who:'Suami',frac:hasKids?1/4:1/2,txt:hasKids?'1/4':'1/2'}); }
+  if(S.mother) out.push({who:'Ibu',frac:hasKids?1/6:1/3,txt:hasKids?'1/6':'1/3'});
+  var fatherFixed=S.father&&hasKids; if(fatherFixed) out.push({who:'Ayah',frac:1/6,txt:'1/6'});
+  var fixed=out.reduce(function(a,b){return a+b.frac},0);
+  var kids=[];
+  if(hasKids){
+    if(S.sons>0){ var rem=Math.max(0,1-fixed), units=S.sons*2+S.daughters;
+      kids.push({who:S.sons>1?S.sons+' anak laki-laki':'Anak laki-laki',frac:rem*2*S.sons/units,txt:'sisa (asabah), 2:1'});
+      if(S.daughters) kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:rem*S.daughters/units,txt:'sisa (asabah), 2:1'});
+    } else { var df=S.daughters===1?1/2:2/3; kids.push({who:S.daughters>1?S.daughters+' anak perempuan':'Anak perempuan',frac:df,txt:S.daughters===1?'1/2':'2/3'}); fixed+=df; }
   }
-  function net(){var a=S.assets.reduce(function(s,x){return s+(+x.val||0)},0);return Math.max(0,a-(+S.debt||0))}
-  function wasiatAmt(){return net()*S.pct/100}
-  function afterWasiat(){return net()-wasiatAmt()}
+  out=out.concat(kids);
+  var total=out.reduce(function(a,b){return a+b.frac},0);
+  if(S.father&&!fatherFixed){ var r=Math.max(0,1-total); out.push({who:'Ayah',frac:r,txt:'sisa (asabah)'}); total+=r; }
+  else if(S.father&&hasKids&&S.sons===0){ var r2=Math.max(0,1-total); if(r2>0){ for(var i=0;i<out.length;i++) if(out[i].who==='Ayah'){out[i].frac+=r2;out[i].txt='1/6 + sisa'} total+=r2; } }
+  if(total>1.0001){ out.forEach(function(o){o.frac=o.frac/total}); out.awl=true; total=1 }
+  if(total<0.9999&&out.length){ var ns=out.filter(function(o){return o.who!=='Istri'&&o.who!=='Suami'}); var sum=ns.reduce(function(a,b){return a+b.frac},0); var left=1-total; if(sum>0){ns.forEach(function(o){o.frac+=left*o.frac/sum}); out.radd=true} else {out[0].frac+=left} }
+  return out;
+}
 
-  // render
-  var steps=document.querySelectorAll('.q'), N=steps.length;
-  function show(){
-    $('hero').style.display=S.started?'none':'';
-    $('flow').classList.toggle('on',S.started); $('nav').hidden=!S.started;
-    steps.forEach(function(q){q.classList.toggle('on',+q.dataset.step===S.step)});
-    $('bar').style.width=((S.step)/(N-1)*100)+'%';
-    $('back').style.visibility=S.step===0?'hidden':'visible';
-    $('next').textContent=S.step===N-1?'Simpan draf':(S.step===N-2?'Lihat dokumen':'Lanjut');
-    $('next').style.display=S.step===N-1?'none':'';
-    if(S.step===1) renderAssets(); if(S.step===2) renderFaraid(); if(S.step===3) renderWasiat(); if(S.step===7) renderDoc();
-    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); save();
+function visibleIds(){
+  var ids=['name','gender','married','kids'];
+  if(S.hasKids){ ids.push('kidsCount','kidsAdded'); }
+  ids.push('parents','assets','debt','networth','faraidPreview','wasiatPct','wasiatTo','wasiatAdded');
+  if(S.hasKids){ ids.push('guardian'); }
+  ids.push('funeral','digital','letter','witness','legalNote','summary','document');
+  return ids;
+}
+var SEG0=['name','gender','married','kids','kidsCount','kidsAdded','parents'];
+var SEG1=['assets','debt','networth','faraidPreview','wasiatPct','wasiatTo','wasiatAdded'];
+function segOf(id){ if(SEG0.indexOf(id)>-1) return 0; if(SEG1.indexOf(id)>-1) return 1; return 2; }
+
+var fills=['siapa yang jaga anak-anak?','untuk siapa uang & barangku?','apa yang kutinggalkan selain barang?'];
+var fi=0, fillEl=$('fill'), reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(fillEl && !reduceMotion){
+  fillEl.style.transition='opacity .22s';
+  setInterval(function(){
+    fi=(fi+1)%fills.length;
+    fillEl.style.opacity=0;
+    setTimeout(function(){ fillEl.textContent=fills[fi]; fillEl.style.opacity=1; },220);
+  },3200);
+}
+
+var tt; function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+
+function updateProgress(){
+  var ids=visibleIds(), idx=ids.indexOf(S.stepId); if(idx<0) idx=0;
+  var ratio=idx/(ids.length-1);
+  var segFloat=ratio*3, seg=Math.min(2,Math.floor(segFloat)), within=(segFloat-seg)*100;
+  for(var i=0;i<3;i++){ var el=$('s'+i); el.style.width=(i<seg?100:(i===seg?within:0))+'%'; }
+  var labels=['KELUARGA','HARTA & WASIAT','RINGKASAN'];
+  $('plabel').textContent=labels[segOf(S.stepId)];
+}
+
+function go(delta){
+  var ids=visibleIds(), idx=ids.indexOf(S.stepId);
+  var next=ids[idx+delta];
+  if(delta>0 && !canContinue(S.stepId)){ toast('Lengkapi dulu ya'); return; }
+  if(!next){ return; }
+  S.stepId=next; save(); render();
+}
+
+function canContinue(id){
+  switch(id){
+    case 'name': return !!S.nick.trim();
+    case 'gender': return !!S.gender;
+    case 'married': return S.married!=='';
+    case 'kids': return S.hasKids!==null;
+    case 'kidsCount': return (S.sons+S.daughters)>0;
+    case 'wasiatTo': return !!S.wasiatTo;
+    case 'witness': return !!(S.w1.trim()&&S.w2.trim());
+    default: return true;
   }
-  function renderAssets(){
-    var h=S.assets.map(function(a,i){return '<div class="card asset"><div><b>'+esc(a.type)+'</b> · '+rp(a.val)+'<small>'+esc(a.where||'—')+'</small></div><button class="del" data-i="'+i+'" aria-label="hapus">✕</button></div>'}).join('');
-    $('assetList').innerHTML=h||'<p class="note">Belum ada. Mulai dari yang paling bernilai.</p>';
-    $('netShow').textContent=rp(net());
-  }
-  function renderFaraid(){
-    var f=faraid(), n=afterWasiat();
-    if(!f.length){$('faraidBox').innerHTML='<p>Belum ada ahli waris yang kami kenali dari jawabanmu. Dalam keadaan ini, saudara kandung atau kerabat lain bisa menjadi ahli waris — bagian itu belum dihitung di prototipe.</p>';return}
-    var h='<p class="note">Dari '+rp(net())+' harta bersih'+(S.pct>0?', setelah wasiat '+S.pct+'%':'')+'. Sisa '+rp(n)+' dibagi:</p><div class="shares">';
-    f.forEach(function(o){h+='<div class="share"><div><b>'+esc(o.who)+'</b><div class="bar"><i style="width:'+(o.frac*100).toFixed(1)+'%"></i></div></div><span class="note">'+o.txt+'</span><b>'+rp(n*o.frac)+'</b></div>'});
-    h+='</div>';
-    if(f.awl) h+='<p class="note">Bagian melebihi satu, jadi dikurangi proporsional (ʿaul).</p>';
-    if(f.radd) h+='<p class="note">Ada sisa yang dikembalikan proporsional kepada ahli waris selain pasangan (radd).</p>';
-    $('faraidBox').innerHTML=h;
-  }
-  function renderWasiat(){ $('pct').value=S.pct; $('pctLabel').textContent=S.pct+'% dari harta bersih'+(S.pct===33?' (batas maksimum)':''); $('wasiatShow').textContent=rp(wasiatAmt()); $('heirWarn').hidden=S.wasiatTo!=='orang' }
-  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-  function nl(s){return esc(s).replace(/\n/g,'<br>')}
-  function renderDoc(){
-    var f=faraid(), n=afterWasiat(), today=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
-    var h='<h3>Wasiat dan catatan keluarga '+(S.nick?'— '+esc(S.nick):'')+'</h3><div class="sub">Disusun '+today+' · draf, belum ditandatangani</div>';
-    h+='<p>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Saya menulis ini dalam keadaan sadar dan tanpa paksaan, supaya keluarga saya tidak perlu menebak.</p>';
-    h+='<h4>Harta dan di mana menemukannya</h4>'+(S.assets.length?'<ul>'+S.assets.map(function(a){return '<li>'+esc(a.type)+' — sekitar '+rp(a.val)+(a.where?'. '+esc(a.where):'')+'</li>'}).join('')+'</ul>':'<p>Belum diisi.</p>')+'<p>Utang yang harus dilunasi lebih dulu: '+rp(S.debt||0)+'. Harta bersih sekitar '+rp(net())+'.</p>';
-    if(S.pct>0) h+='<h4>Wasiat (maksimal sepertiga)</h4><p>Saya mewasiatkan '+S.pct+'% dari harta bersih, sekitar '+rp(wasiatAmt())+', untuk '+({wakaf:'wakaf yang dikelola selamanya',kampanye:'lembaga atau kampanye kebaikan',orang:'orang berikut'}[S.wasiatTo]||'tujuan berikut')+(S.wasiatNote?': '+esc(S.wasiatNote):'.')+(S.wasiatTo==='orang'?' <i>Bila penerima adalah ahli waris, wasiat ini berlaku dengan persetujuan ahli waris lain.</i>':'')+'</p>';
-    if(f.length) h+='<h4>Pembagian sisa harta menurut faraid (perkiraan)</h4><ul>'+f.map(function(o){return '<li>'+esc(o.who)+': '+o.txt+' ≈ '+rp(n*o.frac)+'</li>'}).join('')+'</ul>';
-    if(S.g1||S.g2) h+='<h4>Wali untuk anak-anak</h4><p>'+(S.g1?'Wali utama: '+esc(S.g1)+'. ':'')+(S.g2?'Cadangan: '+esc(S.g2)+'. ':'')+(S.gNote?'<br>'+nl(S.gNote):'')+'</p>';
-    if(S.funeral) h+='<h4>Permintaan saat pemakaman</h4><p>'+nl(S.funeral)+'</p>';
-    if(S.digital) h+='<h4>Akun dan hal digital</h4><p>'+nl(S.digital)+'</p>';
-    if(S.letter) h+='<h4>Untuk keluarga</h4><p>'+nl(S.letter)+'</p>';
-    h+='<h4>Pemegang kunci</h4><p>'+(S.keeper?esc(S.keeper):'Belum ditentukan')+'</p>';
-    h+='<div class="sig"><div>Tanda tangan saya<br><br><br>'+esc(S.nick||'')+'</div><div>Saksi 1<br><br><br>'+esc(S.w1||'')+'</div><div>Saksi 2<br><br><br>'+esc(S.w2||'')+'</div></div>';
-    h+='<p class="sub" style="margin-top:18px">Perhitungan faraid adalah perkiraan, bukan fatwa. Dokumen ini berlaku sebagai wasiat tertulis setelah ditandatangani di hadapan dua saksi; untuk kepastian lebih, dapat juga dibuat di hadapan notaris.</p>';
-    $('doc').innerHTML=h;
+}
+
+function setCta(){ var b=$('cta'); if(b) b.disabled=!canContinue(S.stepId); }
+
+function optRow(selected,label,sub){
+  return '<button type="button" class="opt'+(selected?' sel':'')+'" data-v="'+esc(label.v)+'"><div><b>'+esc(label.t)+'</b>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</div><span class="ring">✓</span></button>';
+}
+
+function render(){
+  $('hero').style.display = S.started? 'none':'';
+  $('flow').style.display = S.started? '':'none';
+  if(!S.started) return;
+  $('back').hidden = visibleIds().indexOf(S.stepId)===0;
+  updateProgress();
+  var id=S.stepId, html='';
+
+  if(id==='name'){
+    html='<h2>Siapa namamu?</h2><p class="help">Supaya dokumenmu terasa personal, bukan formulir.</p>'
+      +'<input type="text" id="i_nick" placeholder="Nama panggilan" value="'+esc(S.nick)+'" autocomplete="off">'
+      +cta('Lanjut');
+  } else if(id==='gender'){
+    html='<h2>Kamu laki-laki atau perempuan?</h2><p class="help">Ini menentukan istilah dan bagian warismu menurut faraid.</p>'
+      +'<div class="opts">'+opt('L','gender','Laki-laki')+opt('P','gender','Perempuan')+'</div>'+cta('Lanjut');
+  } else if(id==='married'){
+    html='<h2>Apakah kamu sudah menikah?</h2><p class="help">Pasangan punya bagian waris tersendiri menurut faraid.</p>'
+      +'<div class="opts">'+opt('1','married','Sudah menikah')+opt('0','married','Belum / tidak menikah')+'</div>'+cta('Lanjut');
+  } else if(id==='kids'){
+    html='<h2>Apakah kamu punya anak?</h2><p class="help">Kalau ada yang di bawah umur, kami bantu siapkan walinya.</p>'
+      +'<div class="opts">'+optBool(true,'Ya, saya punya anak')+optBool(false,'Belum punya anak')+'</div>'+cta('Lanjut');
+  } else if(id==='kidsCount'){
+    html='<h2>Berapa anakmu?</h2><p class="help">Jumlah saja dulu — nama tiap anak bisa kamu tambahkan nanti.</p>'
+      +'<div class="row2"><div><label class="f">Anak laki-laki</label><input type="number" id="i_sons" min="0" max="12" value="'+S.sons+'"></div>'
+      +'<div><label class="f">Anak perempuan</label><input type="number" id="i_daughters" min="0" max="12" value="'+S.daughters+'"></div></div>'
+      +cta('Lanjut');
+  } else if(id==='kidsAdded'){
+    html=glow('pill','DITAMBAHKAN KE RENCANAMU','Wali untuk anak-anakmu.',
+      'Kamu akan memilih siapa wali utama dan cadangannya nanti di bagian pribadi.<br><span style="color:var(--muted);font-size:14px">Tanpa wasiat, pengadilan yang menentukan.</span>')
+      +cta('Lanjut');
+  } else if(id==='parents'){
+    html='<h2>Orang tuamu, masih ada yang hidup?</h2><p class="help">Pilih semua yang berlaku.</p>'
+      +'<div class="opts">'+chipMulti('father','Ayah')+chipMulti('mother','Ibu')+'</div>'+cta('Lanjut');
+  } else if(id==='assets'){
+    html='<h2>Apa saja yang kamu punya, dan di mana?</h2><p class="help">Perkiraan kasar sudah cukup. Ini yang paling sering hilang bersama orangnya.</p>'
+      +'<div id="assetList">'+renderAssetList()+'</div>'
+      +'<label class="f">Jenis</label><select id="i_aType"><option>Rekening bank</option><option>E-wallet / investasi</option><option>Rumah / tanah</option><option>Kendaraan</option><option>Emas / perhiasan</option><option>Usaha</option><option>Asuransi jiwa</option><option>Lainnya</option></select>'
+      +'<label class="f">Perkiraan nilai (Rp)</label><input type="number" id="i_aVal" min="0" step="100000" placeholder="25000000">'
+      +'<label class="f">Di mana / cara mengaksesnya</label><input type="text" id="i_aWhere" placeholder="Bank ABC; PIN tahu istri">'
+      +'<button type="button" class="cta outline" id="addAsset" style="margin-top:14px">+ Tambah ke daftar</button>'
+      +cta('Lanjut');
+  } else if(id==='debt'){
+    html='<h2>Apakah kamu punya utang?</h2><p class="help">Utang dilunasi dulu, baru wasiat, baru waris.</p>'
+      +'<input type="number" id="i_debt" min="0" step="100000" placeholder="0" value="'+(S.debt||'')+'">'
+      +cta('Lanjut');
+  } else if(id==='networth'){
+    html=glow('','','Harta bersihmu, sekitar', '<div class="statnum">'+rp(net())+'</div><div class="stattag">setelah dikurangi utang</div>')
+      +cta('Lanjut');
+  } else if(id==='faraidPreview'){
+    var f=faraid();
+    html='<h2>Begini kira-kira pembagiannya.</h2><p class="help">Perkiraan menurut faraid, sebelum wasiat. Bukan fatwa — untuk kasus khusus tanyakan ulama atau Pengadilan Agama.</p>'
+      +renderShares(f, net())+cta('Lanjut');
+  } else if(id==='wasiatPct'){
+    html='<h2>Berapa persen untuk wasiat?</h2><p class="help">Di luar faraid, kamu boleh mewasiatkan sampai sepertiga harta bersih.</p>'
+      +'<input type="range" id="i_pct" min="0" max="33" value="'+S.pct+'">'
+      +'<div class="bigamt" id="wasiatShow">'+rp(wasiatAmt())+'</div>'
+      +'<p class="help" style="margin:0">'+S.pct+'% dari harta bersih'+(S.pct===33?' (batas maksimum)':'')+'</p>'
+      +cta('Lanjut');
+  } else if(id==='wasiatTo'){
+    html='<h2>Untuk siapa atau apa?</h2><p class="help">Pilih satu, lalu jelaskan singkat.</p>'
+      +'<div class="opts">'+opt('wakaf','wasiatTo','Wakaf','Dikelola selamanya')+opt('kampanye','wasiatTo','Kampanye / lembaga kebaikan')+opt('orang','wasiatTo','Orang tertentu')+'</div>'
+      +'<label class="f">Keterangan</label><input type="text" id="i_wasiatNote" placeholder="misalnya: beasiswa anak yatim, atau nama orangnya" value="'+esc(S.wasiatNote)+'">'
+      +(S.wasiatTo==='orang'?'<p class="note-box">Wasiat kepada ahli waris memerlukan persetujuan ahli waris lain. Kami tandai ini di dokumen.</p>':'')
+      +cta('Lanjut');
+  } else if(id==='wasiatAdded'){
+    html=glow('pill','DITAMBAHKAN KE RENCANAMU','Wasiatmu sudah tercatat.',
+      'Sekitar '+rp(wasiatAmt())+' akan disalurkan sesuai keterangan yang kamu tulis, di luar bagian faraid keluargamu.')
+      +cta('Lanjut');
+  } else if(id==='guardian'){
+    html='<h2>Siapa yang kamu percaya untuk anak-anak?</h2><p class="help">Wali utama, dan cadangan kalau yang utama berhalangan.</p>'
+      +'<label class="f">Wali utama</label><input type="text" id="i_g1" placeholder="nama dan hubungan, misalnya: Rani (kakak)" value="'+esc(S.g1)+'">'
+      +'<label class="f">Cadangan</label><input type="text" id="i_g2" placeholder="opsional" value="'+esc(S.g2)+'">'
+      +'<label class="f">Pesan untuk wali</label><textarea id="i_gNote" placeholder="hal tentang sekolah, agama, atau kebiasaan anak-anak">'+esc(S.gNote)+'</textarea>'
+      +cta('Lanjut');
+  } else if(id==='funeral'){
+    html='<h2>Ada permintaan untuk pemakamanmu?</h2><p class="help">Boleh dilewati kalau belum terpikir.</p>'
+      +'<textarea id="i_funeral" placeholder="dimakamkan di mana, siapa yang mengimami, doa yang ingin dibacakan">'+esc(S.funeral)+'</textarea>'
+      +cta('Lanjut');
+  } else if(id==='digital'){
+    html='<h2>Bagaimana dengan akun digitalmu?</h2><p class="help">HP, email, media sosial.</p>'
+      +'<textarea id="i_digital" placeholder="ditutup, dijadikan kenangan, atau diserahkan ke siapa">'+esc(S.digital)+'</textarea>'
+      +cta('Lanjut');
+  } else if(id==='letter'){
+    html='<h2>Ada pesan untuk keluarga?</h2><p class="help">Hanya akan dibuka nanti.</p>'
+      +'<textarea id="i_letter" placeholder="tulis apa saja">'+esc(S.letter)+'</textarea>'
+      +cta('Lanjut');
+  } else if(id==='witness'){
+    html='<h2>Siapa dua saksimu?</h2><p class="help">Wasiat tertulis sah bila ditandatangani di depan dua saksi dewasa.</p>'
+      +'<label class="f">Saksi 1</label><input type="text" id="i_w1" placeholder="nama, nomor WhatsApp" value="'+esc(S.w1)+'">'
+      +'<label class="f">Saksi 2</label><input type="text" id="i_w2" placeholder="nama, nomor WhatsApp" value="'+esc(S.w2)+'">'
+      +'<label class="f">Pemegang kunci</label><input type="text" id="i_keeper" placeholder="biasanya pasangan atau saudara" value="'+esc(S.keeper)+'">'
+      +cta('Lanjut');
+  } else if(id==='legalNote'){
+    html=glow('pill green','DITULIS SESUAI KHI PASAL 195','Dua saksi, tanpa notaris.',
+      'Itu saja yang dibutuhkan agar wasiatmu sah secara tertulis. Kami bantu panduan tanda tangan langkah demi langkah.')
+      +cta('Lanjut');
+  } else if(id==='summary'){
+    html='<div class="pill green">RENCANAMU SUDAH SIAP</div><h2>Ini rencana wasiat dan catatanmu, '+esc(S.nick||'kamu')+'.</h2>'
+      +'<div class="checksum">'
+      +'<h4>Dokumenmu</h4>'
+      +sumrow('Surat Wasiat','Faraid dihitung, wasiat dalam batas sepertiga')
+      +sumrow('Catatan Keluarga','Harta, wali, dan pesan untuk orang terdekat')
+      +sumrow('Panduan Dua Saksi','Sesuai KHI Pasal 195 — tanpa notaris')
+      +'</div>'
+      +'<p class="note-box">Berikutnya: lihat dokumen lengkapmu, cetak, lalu tanda tangani di depan dua saksi. Kamu bisa kembali mengubahnya kapan saja.</p>'
+      +cta('Lihat dokumen saya ›');
+  } else if(id==='document'){
+    html='<h2>Selesai. Begini bentuknya.</h2><p class="help">Cetak, tanda tangani di depan dua saksimu, simpan aslinya.</p>'
+      +'<div class="doc">'+renderDocHtml()+'</div>'
+      +'<div class="actions">'
+      +'<button class="cta" id="btnPrint">Unduh / cetak dokumen</button>'
+      +'<button class="cta ghost" id="btnShare">Kirim ringkasan ke saksi lewat WhatsApp</button>'
+      +'<button class="cta outline" id="btnReset">Mulai dari awal</button>'
+      +'</div>';
   }
 
-  // bind
-  function bindText(id,key,num){var el=$(id);if(!el)return;el.value=S[key]||(num?'':'');if(num&&S[key])el.value=S[key];el.addEventListener('input',function(){S[key]=num?+el.value||0:el.value;if(id==='debt')$('netShow').textContent=rp(net());save()})}
-  ['nick','wasiatNote','g1','g2','gNote','funeral','digital','letter','w1','w2','keeper'].forEach(function(k){bindText(k,k,false)});
-  bindText('sons','sons',true); bindText('daughters','daughters',true); bindText('debt','debt',true);
-  document.querySelectorAll('.chips[data-field]').forEach(function(g){var f=g.dataset.field;Array.prototype.forEach.call(g.children,function(b){b.setAttribute('aria-pressed',String(S[f])===b.dataset.v);b.addEventListener('click',function(){S[f]=b.dataset.v;Array.prototype.forEach.call(g.children,function(x){x.setAttribute('aria-pressed',x===b)});if(f==='wasiatTo')renderWasiat();save()})})});
-  document.querySelectorAll('[data-toggle]').forEach(function(b){var k=b.dataset.toggle;b.setAttribute('aria-pressed',!!S[k]);b.addEventListener('click',function(){S[k]=!S[k];b.setAttribute('aria-pressed',S[k]);save()})});
-  $('addAsset').addEventListener('click',function(){var v=+$('aVal').value||0;if(!v){toast('Isi perkiraan nilainya dulu');return}S.assets.push({type:$('aType').value,val:v,where:$('aWhere').value});$('aVal').value='';$('aWhere').value='';renderAssets();save()});
-  $('assetList').addEventListener('click',function(e){var b=e.target.closest('.del');if(!b)return;S.assets.splice(+b.dataset.i,1);renderAssets();save()});
-  $('pct').addEventListener('input',function(){S.pct=+$('pct').value;renderWasiat();save()});
-  $('start').addEventListener('click',function(){S.started=true;S.step=0;show()});
-  $('resume').addEventListener('click',function(){S.started=true;show()});
-  $('home').addEventListener('click',function(e){e.preventDefault();S.started=false;show()});
-  $('next').addEventListener('click',function(){ if(S.step===0&&(!S.gender||S.married==='')){toast('Pilih jenis kelamin dan status dulu');return} if(S.step===3&&(S.sons+S.daughters)===0){S.step=5}else S.step=Math.min(N-1,S.step+1);show()});
-  $('back').addEventListener('click',function(){ if(S.step===5&&(S.sons+S.daughters)===0){S.step=3}else S.step=Math.max(0,S.step-1);show()});
-  $('print').addEventListener('click',function(){window.print()});
-  $('share').addEventListener('click',function(){var t='Assalamualaikum. Aku baru menyusun wasiat dan catatan keluarga di Kalau Nanti, dan aku ingin kamu jadi saksi saat aku menandatanganinya. Boleh kita atur waktunya? — '+(S.nick||'');window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')});
-  $('reset').addEventListener('click',function(){if(!confirm('Hapus semua jawaban di perangkat ini?'))return;try{localStorage.removeItem(KEY)}catch(e){}location.reload()});
-  var tt; function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},2200)}
+  $('stepBody').innerHTML=html;
+  bind(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  if(load()&&S.started){S.started=false;$('resume').hidden=false}
-  show();
+function cta(label){ return '<button type="button" class="cta" id="cta">'+esc(label)+'</button>'; }
+function opt(v,field,t,sub){ var sel=S[field]===v; return '<button type="button" class="opt'+(sel?' sel':'')+'" data-field="'+field+'" data-v="'+esc(v)+'"><div><b>'+esc(t)+'</b>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</div><span class="ring">✓</span></button>'; }
+function optBool(v,t){ var sel=S.hasKids===v; return '<button type="button" class="opt'+(sel?' sel':'')+'" data-bool="'+v+'"><div><b>'+esc(t)+'</b></div><span class="ring">✓</span></button>'; }
+function chipMulti(field,t){ var sel=!!S[field]; return '<button type="button" class="opt'+(sel?' sel':'')+'" data-toggle="'+field+'"><div><b>'+esc(t)+'</b></div><span class="ring">✓</span></button>'; }
+function glow(pillClass,pillText,headline,sub){
+  return '<div class="glow">'+(pillText?'<div class="pill'+(pillClass.indexOf('green')>-1?' green':'')+'">'+esc(pillText)+'</div>':'')
+    +'<h2 style="margin-bottom:10px">'+esc(headline)+'</h2>'
+    +'<p class="help" style="margin:0 auto;max-width:360px">'+sub+'</p></div>';
+}
+function sumrow(t,s){ return '<div class="sumrow"><span class="ck">✓</span><div><b>'+esc(t)+'</b><span>'+esc(s)+'</span></div></div>'; }
+
+function renderAssetList(){
+  if(!S.assets.length) return '<p class="help" style="margin-bottom:10px">Belum ada. Mulai dari yang paling bernilai.</p>';
+  return S.assets.map(function(a,i){
+    return '<div class="asset"><div><b>'+esc(a.type)+' · '+rp(a.val)+'</b><small>'+esc(a.where||'—')+'</small></div><button class="del" data-i="'+i+'">✕</button></div>';
+  }).join('');
+}
+function renderShares(f,n){
+  if(!f.length) return '<p class="help">Belum ada ahli waris yang kami kenali dari jawabanmu. Saudara kandung atau kerabat lain mungkin berhak — bagian itu belum dihitung di prototipe ini.</p>';
+  var h='<p class="help">Dari '+rp(net())+' harta bersih'+(S.pct>0?', setelah wasiat '+S.pct+'%':'')+'. Sisa '+rp(n)+' dibagi:</p><div class="shares">';
+  f.forEach(function(o){ h+='<div class="share"><span class="who">'+esc(o.who)+'</span><div class="bar"><i style="width:'+(o.frac*100).toFixed(1)+'%"></i></div><span class="amt">'+rp(n*o.frac)+'</span></div>'; });
+  h+='</div>';
+  if(f.awl) h+='<p class="help" style="margin-top:10px">Bagian melebihi satu, dikurangi proporsional (ʿaul).</p>';
+  if(f.radd) h+='<p class="help" style="margin-top:10px">Ada sisa, dikembalikan proporsional (radd).</p>';
+  return h;
+}
+function renderDocHtml(){
+  var f=faraid(), n=afterWasiat(), today=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  var h='<h3>Wasiat dan catatan keluarga'+(S.nick?' — '+esc(S.nick):'')+'</h3><div class="sub">Disusun '+today+' · draf, belum ditandatangani</div>';
+  h+='<p>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Saya menulis ini dalam keadaan sadar dan tanpa paksaan, supaya keluarga saya tidak perlu menebak.</p>';
+  h+='<h4>Harta dan di mana menemukannya</h4>'+(S.assets.length?'<ul>'+S.assets.map(function(a){return '<li>'+esc(a.type)+' — sekitar '+rp(a.val)+(a.where?'. '+esc(a.where):'')+'</li>'}).join('')+'</ul>':'<p>Belum diisi.</p>')+'<p>Utang yang harus dilunasi lebih dulu: '+rp(S.debt||0)+'. Harta bersih sekitar '+rp(net())+'.</p>';
+  if(S.pct>0) h+='<h4>Wasiat (maksimal sepertiga)</h4><p>Saya mewasiatkan '+S.pct+'% dari harta bersih, sekitar '+rp(wasiatAmt())+', untuk '+({wakaf:'wakaf yang dikelola selamanya',kampanye:'lembaga atau kampanye kebaikan',orang:'orang berikut'}[S.wasiatTo]||'tujuan berikut')+(S.wasiatNote?': '+esc(S.wasiatNote):'.')+(S.wasiatTo==='orang'?' <i>Bila penerima adalah ahli waris, wasiat ini berlaku dengan persetujuan ahli waris lain.</i>':'')+'</p>';
+  if(f.length) h+='<h4>Pembagian sisa harta menurut faraid (perkiraan)</h4><ul>'+f.map(function(o){return '<li>'+esc(o.who)+': '+o.txt+' ≈ '+rp(n*o.frac)+'</li>'}).join('')+'</ul>';
+  if(S.g1||S.g2) h+='<h4>Wali untuk anak-anak</h4><p>'+(S.g1?'Wali utama: '+esc(S.g1)+'. ':'')+(S.g2?'Cadangan: '+esc(S.g2)+'. ':'')+(S.gNote?'<br>'+nl(S.gNote):'')+'</p>';
+  if(S.funeral) h+='<h4>Permintaan saat pemakaman</h4><p>'+nl(S.funeral)+'</p>';
+  if(S.digital) h+='<h4>Akun dan hal digital</h4><p>'+nl(S.digital)+'</p>';
+  if(S.letter) h+='<h4>Untuk keluarga</h4><p>'+nl(S.letter)+'</p>';
+  h+='<h4>Pemegang kunci</h4><p>'+(S.keeper?esc(S.keeper):'Belum ditentukan')+'</p>';
+  h+='<div class="sig"><div>Tanda tangan saya<br><br><br>'+esc(S.nick||'')+'</div><div>Saksi 1<br><br><br>'+esc(S.w1||'')+'</div><div>Saksi 2<br><br><br>'+esc(S.w2||'')+'</div></div>';
+  h+='<p class="sub" style="margin-top:16px">Perhitungan faraid adalah perkiraan, bukan fatwa. Dokumen ini berlaku sebagai wasiat tertulis setelah ditandatangani di hadapan dua saksi; untuk kepastian lebih, bisa juga dibuat di hadapan notaris.</p>';
+  return h;
+}
+
+function bind(id){
+  var b=$('cta'); if(b){ b.addEventListener('click',function(){ go(1); }); setCta(); }
+  document.querySelectorAll('.opt[data-field]').forEach(function(elm){
+    elm.addEventListener('click',function(){ S[elm.dataset.field]=elm.dataset.v; save(); render(); });
+  });
+  document.querySelectorAll('.opt[data-bool]').forEach(function(elm){
+    elm.addEventListener('click',function(){ var v=elm.dataset.bool==='true'; S.hasKids=v; if(!v){S.sons=0;S.daughters=0;} save(); render(); });
+  });
+  document.querySelectorAll('.opt[data-toggle]').forEach(function(elm){
+    elm.addEventListener('click',function(){ var k=elm.dataset.toggle; S[k]=!S[k]; save(); render(); });
+  });
+
+  if(id==='name'){ var e=$('i_nick'); e.addEventListener('input',function(){ S.nick=e.value; save(); setCta(); }); e.focus(); }
+  if(id==='kidsCount'){
+    var es=$('i_sons'), ed=$('i_daughters');
+    es.addEventListener('input',function(){ S.sons=(+es.value)||0; save(); setCta(); });
+    ed.addEventListener('input',function(){ S.daughters=(+ed.value)||0; save(); setCta(); });
+  }
+  if(id==='assets'){
+    $('addAsset').addEventListener('click',function(){
+      var v=+$('i_aVal').value||0; if(!v){ toast('Isi perkiraan nilainya dulu'); return; }
+      S.assets.push({type:$('i_aType').value,val:v,where:$('i_aWhere').value});
+      save(); render();
+    });
+    $('assetList').addEventListener('click',function(e){
+      var btn=e.target.closest('.del'); if(!btn) return;
+      S.assets.splice(+btn.dataset.i,1); save(); render();
+    });
+  }
+  if(id==='debt'){ var ed2=$('i_debt'); ed2.addEventListener('input',function(){ S.debt=(+ed2.value)||0; save(); }); }
+  if(id==='wasiatPct'){
+    var er=$('i_pct');
+    er.addEventListener('input',function(){ S.pct=+er.value; save();
+      $('wasiatShow').textContent=rp(wasiatAmt());
+      $('stepBody').querySelector('.help').textContent=S.pct+'% dari harta bersih'+(S.pct===33?' (batas maksimum)':'');
+    });
+  }
+  if(id==='wasiatTo'){ var ew=$('i_wasiatNote'); ew.addEventListener('input',function(){ S.wasiatNote=ew.value; save(); }); }
+  if(id==='guardian'){
+    var g1=$('i_g1'), g2=$('i_g2'), gn=$('i_gNote');
+    g1.addEventListener('input',function(){ S.g1=g1.value; save(); });
+    g2.addEventListener('input',function(){ S.g2=g2.value; save(); });
+    gn.addEventListener('input',function(){ S.gNote=gn.value; save(); });
+  }
+  if(id==='funeral'){ var ef=$('i_funeral'); ef.addEventListener('input',function(){ S.funeral=ef.value; save(); }); }
+  if(id==='digital'){ var edg=$('i_digital'); edg.addEventListener('input',function(){ S.digital=edg.value; save(); }); }
+  if(id==='letter'){ var el=$('i_letter'); el.addEventListener('input',function(){ S.letter=el.value; save(); }); }
+  if(id==='witness'){
+    var w1=$('i_w1'), w2=$('i_w2'), kp=$('i_keeper');
+    w1.addEventListener('input',function(){ S.w1=w1.value; save(); setCta(); });
+    w2.addEventListener('input',function(){ S.w2=w2.value; save(); setCta(); });
+    kp.addEventListener('input',function(){ S.keeper=kp.value; save(); });
+  }
+  if(id==='document'){
+    $('btnPrint').addEventListener('click',function(){ window.print(); });
+    $('btnShare').addEventListener('click',function(){
+      var t='Assalamualaikum. Aku baru menyusun wasiat dan catatan keluarga di Kalau Nanti, dan aku ingin kamu jadi saksi saat aku menandatanganinya. Boleh kita atur waktunya? — '+(S.nick||'');
+      window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener');
+    });
+    $('btnReset').addEventListener('click',function(){
+      if(!confirm('Hapus semua jawaban di perangkat ini?')) return;
+      try{localStorage.removeItem(KEY)}catch(e){} location.reload();
+    });
+  }
+}
+
+document.querySelectorAll('.startbtn').forEach(function(b){ b.addEventListener('click',function(){ S.started=true; save(); render(); }); });
+$('home').addEventListener('click',function(){ S.started=false; render(); });
+$('back').addEventListener('click',function(){ go(-1); });
+
+if(load() && S.started){ /* resume silently */ }
+render();
 })();
 </script>
 </body>
